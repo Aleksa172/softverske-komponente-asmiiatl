@@ -6,7 +6,7 @@ public abstract class AbstractEntity {
 
     private String entityName;
     private String id;
-    private HashMap<String, AbstractAttribute> attributes;
+    private HashMap<String, Object> attributes;
 
     public AbstractEntity() {
         super();
@@ -34,19 +34,28 @@ public abstract class AbstractEntity {
         this.id = id;
     }
 
-    public void setAttribute(String key, AbstractAttribute aa) {
+    public void setAttribute(String key, Object aa) {
         this.attributes.put(key, aa);
     }
 
-    public AbstractAttribute getAttribute(String key) {
+    public Object getAttribute(String key) {
         return this.attributes.get(key);
     }
 
-    public HashMap<String, AbstractAttribute> getAttributes() {
+    public HashMap<String, Object> getAttributes() {
         return attributes;
     }
 
-    public void setAttributes(HashMap<String, AbstractAttribute> attributes) {
+    public void setAttributes(HashMap<String, Object> attributes) {
         this.attributes = attributes;
+    }
+
+    @Override
+    public String toString() {
+        return "AbstractEntity{" +
+                "entityName='" + entityName + '\'' +
+                ", id='" + id + '\'' +
+                ", attributes=" + attributes +
+                '}';
     }
 }

@@ -1,15 +1,10 @@
 package com.komponente.project;
 
-public abstract class AbstractAttribute {
-
+public class DEPR_AbstractAttribute {
     private Object value;
 
-    public AbstractAttribute() {
+    public DEPR_AbstractAttribute(){
         super();
-    }
-
-    public AbstractAttribute(Object value){
-        this.value = value;
     }
 
     public Object getValue() {

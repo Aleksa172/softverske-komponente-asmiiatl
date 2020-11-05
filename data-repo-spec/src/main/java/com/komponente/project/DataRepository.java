@@ -8,13 +8,18 @@ import java.util.List;
  */
 public interface DataRepository {
 
+
+    boolean openWarehouse(String path);
+
+    void setMaxEntitiesPerFile(int maxEntities);
+
     /**
      * Save object in the specified collection of the storage.
      *
      * @param collection name of the collection
      * @param object     data
      */
-    void save(String collection, Object object);
+    void save(String collection, java.lang.Object object);
 
     /**
      * Get the object with the specified id.
@@ -37,7 +42,7 @@ public interface DataRepository {
 
     void delete(String collection, String id);
 
-    void update(String collection, String id, HashMap<String, AbstractAttribute> newData);
+    void update(String collection, String id, HashMap<String, Object> newData);
 
     <T> T findByCriteria(String collection, HashMap<String, String> criteriaList, AbstractEntity type);
 }
