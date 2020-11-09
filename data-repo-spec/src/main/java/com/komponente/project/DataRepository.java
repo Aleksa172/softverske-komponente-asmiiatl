@@ -1,5 +1,8 @@
 package com.komponente.project;
 
+import com.komponente.project.exceptions.EntityIdNotUniqueException;
+
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
@@ -44,5 +47,7 @@ public interface DataRepository {
 
     void update(String collection, String id, HashMap<String, Object> newData);
 
-    <T> T findByCriteria(String collection, HashMap<String, String> criteriaList, AbstractEntity type);
+    <T> List<T> findByCriteria(String collection, HashMap<String, String> criteriaList, Class<T> type);
+
+    <T> List<T> findByCriteriaOrder(String collection, HashMap<String, String> criteriaList, AbstractEntity type, ArrayList<OrderClause> sortBy);
 }

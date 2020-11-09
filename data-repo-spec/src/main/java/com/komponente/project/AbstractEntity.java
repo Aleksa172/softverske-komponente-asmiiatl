@@ -18,10 +18,19 @@ public abstract class AbstractEntity {
         this.attributes = new HashMap<>();
     }
 
+
+    /**
+     * Gets entity name
+     * @return String name of the entity
+     */
     public String getEntityName() {
         return entityName;
     }
 
+    /**
+     * Set a new name for the entity
+     * @param entityName new name of the entity
+     */
     public void setEntityName(String entityName) {
         this.entityName = entityName;
     }
