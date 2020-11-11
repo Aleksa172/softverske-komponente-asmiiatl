@@ -1,26 +1,23 @@
 package com.komponente.project;
 
-import com.fasterxml.jackson.core.JsonParseException;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.JavaType;
-import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.node.ArrayNode;
+import com.fasterxml.jackson.dataformat.yaml.YAMLFactory;
 import com.komponente.project.exceptions.EntityIdNotUniqueException;
-import com.fasterxml.jackson.databind.node.ObjectNode;
 
 import java.io.File;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
-public class DataRepositoryJson implements DataRepository {
+public class DataRepositoryYaml implements DataRepository{
 
-    private ObjectMapper objectMapper = new ObjectMapper();
+
+    private ObjectMapper objectMapper = new ObjectMapper(new YAMLFactory());
     private String currentWarehouse = "";
     private int maxEntities=50;
 
@@ -103,7 +100,7 @@ public class DataRepositoryJson implements DataRepository {
     @Override
     public void save(String collection, java.lang.Object object) {
         try {
-            List<java.lang.Object> objects = objectMapper.    readValue(new File(getCollectionPath(collection)), new TypeReference<List<java.lang.Object>>() {
+            List<Object> objects = objectMapper.readValue(new File(getCollectionPath(collection)), new TypeReference<List<Object>>() {
             });
             // Igore - ovo ce biti deo refaktorizacije, pripremi Yaml
             AbstractEntity objectParameter=null;
@@ -172,15 +169,6 @@ public class DataRepositoryJson implements DataRepository {
 
     @Override
     public void delete(String collection, int id) {
-        try {
-            File file = new File(getCollectionPath(collection));
-            ArrayNode jsonNode = (ArrayNode) objectMapper.readTree(file);
-            jsonNode.remove(id);
-            } catch (JsonParseException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
 
     }
 
@@ -261,3 +249,5 @@ public class DataRepositoryJson implements DataRepository {
         return this.currentWarehouse+"/"+collection;
     }
 }
+
+

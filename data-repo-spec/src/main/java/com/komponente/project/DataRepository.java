@@ -43,7 +43,7 @@ public interface DataRepository {
      */
     <T> List<T> findAll(String collection, Class<T> type);
 
-    void delete(String collection, String id);
+    void delete(String collection, int id);
 
     void update(String collection, String id, HashMap<String, Object> newData);
 
