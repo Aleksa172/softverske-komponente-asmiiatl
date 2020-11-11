@@ -2,7 +2,7 @@ package com.komponente.project;
 
 import java.util.HashMap;
 
-public abstract class AbstractEntity {
+public class AbstractEntity {
 
     private String entityName;
     private String id;
@@ -10,6 +10,11 @@ public abstract class AbstractEntity {
 
     public AbstractEntity() {
         super();
+    }
+
+    public AbstractEntity(String entityName) {
+        this.entityName = entityName;
+        this.attributes = new HashMap<>();
     }
 
     public AbstractEntity(String entityName, String id) {

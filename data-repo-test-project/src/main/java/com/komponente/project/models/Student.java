@@ -23,7 +23,10 @@ public class Student extends AbstractEntity {
     }
 
     public Student(String id, String name){
-        super(ENTITY_NAME, id);
+        super(ENTITY_NAME);
+        if(id == null) {
+            this.setId(UUID.randomUUID().toString());
+        }
         this.setName(name);
     }
 

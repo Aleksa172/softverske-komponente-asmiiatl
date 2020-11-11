@@ -121,7 +121,7 @@ public class DataRepositoryJson implements DataRepository {
                 JsonNode jsonNode = objectMapper.valueToTree(o);
                 // Treba da bude AbstractEntity
                 if(object instanceof AbstractEntity) {
-                    if (jsonNode.get("id").asText().equals(objectParameter.getId())) {
+                    if (jsonNode.get("id") != null && jsonNode.get("id").asText().equals(objectParameter.getId())) {
                         foundId = true;
                     }
                 }
@@ -171,12 +171,16 @@ public class DataRepositoryJson implements DataRepository {
     }
 
     @Override
-    public void delete(String collection, int id) {
+    public void delete(String collection, String id) {
         try {
             File file = new File(getCollectionPath(collection));
             ArrayNode jsonNode = (ArrayNode) objectMapper.readTree(file);
-            jsonNode.remove(id);
-            } catch (JsonParseException e) {
+            JavaType javaType = objectMapper.getTypeFactory().constructCollectionType(List.class, AbstractEntity.class);
+            List<AbstractEntity> objects = objectMapper.readValue(file, javaType);
+            objects.stream().filter(object -> {
+                return true;
+            });
+        } catch (JsonParseException e) {
             e.printStackTrace();
         } catch (IOException e) {
             e.printStackTrace();

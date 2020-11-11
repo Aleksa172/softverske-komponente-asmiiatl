@@ -16,8 +16,11 @@
             <groupId>com.raf</groupId>
             <artifactId>data-repo-json-impl</artifactId>
         </dependency>
+        <dependency>
+            <groupId>com.raf</groupId>
+            <artifactId>data-repo-yaml-impl</artifactId>
+        </dependency>
     </dependencies>
-
 
 
 </project>

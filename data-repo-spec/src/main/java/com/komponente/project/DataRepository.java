@@ -57,7 +57,7 @@ public interface DataRepository {
      * @param collection    name of the collection
      * @param id id of the object we want to delete
      */
-    void delete(String collection, int id);
+    void delete(String collection, String id);
 
     /**
      * Update an object form collection

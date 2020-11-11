@@ -100,6 +100,7 @@ public class DataRepositoryYaml implements DataRepository{
     @Override
     public void save(String collection, java.lang.Object object) {
         try {
+            System.out.println(getCollectionPath(collection));
             List<Object> objects = objectMapper.readValue(new File(getCollectionPath(collection)), new TypeReference<List<Object>>() {
             });
             // Igore - ovo ce biti deo refaktorizacije, pripremi Yaml
@@ -118,7 +119,7 @@ public class DataRepositoryYaml implements DataRepository{
                 JsonNode jsonNode = objectMapper.valueToTree(o);
                 // Treba da bude AbstractEntity
                 if(object instanceof AbstractEntity) {
-                    if (jsonNode.get("id").asText().equals(objectParameter.getId())) {
+                    if (jsonNode.get("id") != null && jsonNode.get("id").asText().equals(objectParameter.getId())) {
                         foundId = true;
                     }
                 }
@@ -168,7 +169,7 @@ public class DataRepositoryYaml implements DataRepository{
     }
 
     @Override
-    public void delete(String collection, int id) {
+    public void delete(String collection, String id) {
 
     }
 

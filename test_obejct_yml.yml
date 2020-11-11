@@ -1,0 +1,14 @@
+---
+- &3b792ded-a2b4-4009-b45b-caa8a59ecb8a id: "3b792ded-a2b4-4009-b45b-caa8a59ecb8a"
+  entityName: "Student"
+  attributes:
+    name: "Pera"
+    najdrugar:
+      &e3dc1f58-8f87-48ba-8cab-e78c7e778051 id: "e3dc1f58-8f87-48ba-8cab-e78c7e778051"
+      entityName: "Student"
+      attributes:
+        name: "Jova"
+        friends:
+        - *3b792ded-a2b4-4009-b45b-caa8a59ecb8a
+    friends:
+    - *e3dc1f58-8f87-48ba-8cab-e78c7e778051
