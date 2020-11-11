@@ -16,6 +16,7 @@
         <module>data-repo-json-impl</module>
         <module>data-repo-spec</module>
         <module>data-repo-test-project</module>
+        <module>data-repo-yaml-impl</module>
     </modules>
 
     <dependencyManagement>
